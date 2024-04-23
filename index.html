@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Tareas</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mx-auto mt-8">
+    <h1 class="text-2xl font-bold mb-4">Lista de Tareas</h1>
+    <input type="text" id="taskInput" class="border-gray-400 border-solid border rounded py-2 px-3 mb-4" placeholder="Agregar nueva tarea">
+    <button id="addTaskBtn" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Agregar tarea</button>
+    <div class="mt-4">
+      <button id="showAllBtn" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded mr-2">Mostrar todas</button>
+      <button id="showCompletedBtn" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded mr-2">Mostrar completadas</button>
+      <button id="showPendingBtn" class="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded">Mostrar pendientes</button>
+    </div>
+    <ul id="taskList" class="mt-4">
+    </ul>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>
