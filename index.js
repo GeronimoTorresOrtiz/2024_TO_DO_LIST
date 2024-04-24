@@ -1,9 +1,9 @@
 const taskInput = document.getElementById('taskInput');
-const addTaskBtn = document.getElementById('addTaskBtn');
+const agregarTareaBoton = document.getElementById('agregarTareaBoton');
 const taskList = document.getElementById('taskList');
-const showAllBtn = document.getElementById('showAllBtn');
-const showCompletedBtn = document.getElementById('showCompletedBtn');
-const showPendingBtn = document.getElementById('showPendingBtn');
+const mostrarTareas = document.getElementById('mostrarTareas');
+const mostrarCompletadas = document.getElementById('mostrarCompletadas');
+const mostrarPendientes = document.getElementById('mostrarPendientes');
 
 // si no tiene tareas arranca con la lista vacia
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -26,10 +26,10 @@ function renderTasks() {
       taskText.classList.add('line-through');
     }
 
-    const deleteBtn = document.createElement('button');
-    deleteBtn.innerText = 'Eliminar';
-    deleteBtn.classList.add('text-red-500', 'hover:text-red-700');
-    deleteBtn.addEventListener('click', () => {
+    const botonBorrar = document.createElement('button');
+    botonBorrar.innerText = 'Eliminar';
+    botonBorrar.classList.add('text-red-500', 'hover:text-red-700');
+    botonBorrar.addEventListener('click', () => {
       tasks.splice(index, 1);
       renderTasks();
       saveTasksToLocalStorage();
@@ -46,14 +46,13 @@ function renderTasks() {
 
     listItem.appendChild(completeCheckbox);
     listItem.appendChild(taskText);
-    listItem.appendChild(deleteBtn);
-
+    listItem.appendChild(botonBorrar);
     taskList.appendChild(listItem);
   });
 }
 
 // agrega una nueva tarea
-const addTask = () => {
+const agregarTarea = () => {
   const taskText = taskInput.value.trim();
   if (taskText) {
     tasks.push({ text: taskText, completed: false });
@@ -64,19 +63,19 @@ const addTask = () => {
 };
 
 // filtra las tareas completadas
-const showCompletedTasks = () => {
+const mostrarTareasCompletadas = () => {
   const completedTasks = tasks.filter(task => task.completed);
   renderFilteredTasks(completedTasks);
 };
 
 // filtra las tareas pendientes
-const showPendingTasks = () => {
+const mostrarTareasPendientes = () => {
   const pendingTasks = tasks.filter(task => !task.completed);
   renderFilteredTasks(pendingTasks);
 };
 
 // muestra todas las tareas
-const showAllTasks = () => {
+const mostrarTodasTareas = () => {
   renderTasks();
 };
 
@@ -93,10 +92,10 @@ const renderFilteredTasks = (filteredTasks) => {
       taskText.classList.add('line-through');
     }
 
-    const deleteBtn = document.createElement('button');
-    deleteBtn.innerText = 'Eliminar';
-    deleteBtn.classList.add('text-red-500', 'hover:text-red-700');
-    deleteBtn.addEventListener('click', () => {
+    const botonBorrar = document.createElement('button');
+    botonBorrar.innerText = 'Eliminar';
+    botonBorrar.classList.add('text-red-500', 'hover:text-red-700');
+    botonBorrar.addEventListener('click', () => {
       tasks.splice(index, 1);
       renderFilteredTasks(filteredTasks);
       saveTasksToLocalStorage(); 
@@ -113,13 +112,13 @@ const renderFilteredTasks = (filteredTasks) => {
 
     listItem.appendChild(completeCheckbox);
     listItem.appendChild(taskText);
-    listItem.appendChild(deleteBtn);
+    listItem.appendChild(botonBorrar);
     taskList.appendChild(listItem);
   });
 };
 
-addTaskBtn.addEventListener('click', addTask);
-showAllBtn.addEventListener('click', showAllTasks);
-showCompletedBtn.addEventListener('click', showCompletedTasks);
-showPendingBtn.addEventListener('click', showPendingTasks);
+agregarTareaBoton.addEventListener('click', agregarTarea);
+mostrarTareas.addEventListener('click', mostrarTodasTareas);
+mostrarCompletadas.addEventListener('click', mostrarTareasCompletadas);
+mostrarPendientes.addEventListener('click', mostrarTareasPendientes);
 renderTasks();
